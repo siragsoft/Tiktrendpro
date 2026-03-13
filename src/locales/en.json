@@ -1,0 +1,75 @@
+{
+  "app_name": "TokTrend Pro",
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "pricing": "Pricing",
+    "login": "Login with Google",
+    "logout": "Logout"
+  },
+  "home": {
+    "hero_title": "Unlock the Secret to TikTok Virality",
+    "hero_subtitle": "Analyze any TikTok video to understand why it succeeded or failed, and get actionable tips to improve your content.",
+    "input_placeholder": "Paste TikTok video URL here...",
+    "analyze_btn": "Analyze Video",
+    "recent_analyses": "Recent Analyses"
+  },
+  "analysis": {
+    "title": "Video Analysis",
+    "hook_score": "Hook Score (First 3s)",
+    "visual_content": "Visual Content",
+    "transcript": "Transcript",
+    "hashtags": "Hashtags Analysis",
+    "sentiment": "Sentiment Analysis",
+    "tips": "Improvement Tips",
+    "save_btn": "Save Analysis",
+    "share_btn": "Share Results"
+  },
+  "dashboard": {
+    "title": "Your Dashboard",
+    "total_analyses": "Total Analyses",
+    "avg_hook_score": "Avg Hook Score",
+    "saved_analyses": "Saved Analyses",
+    "reanalyze": "Re-analyze",
+    "delete": "Delete"
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "free": {
+      "name": "Free",
+      "price": "$0",
+      "features": [
+        "3 analyses per month",
+        "Basic hook analysis",
+        "Standard tips"
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "$9.99/mo",
+      "features": [
+        "Unlimited analyses",
+        "Advanced AI insights",
+        "Hashtag recommendations",
+        "Priority support"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "$29.99/mo",
+      "features": [
+        "Everything in Premium",
+        "Competitor tracking",
+        "Trend prediction",
+        "API access"
+      ]
+    },
+    "subscribe_btn": "Subscribe Now",
+    "current_plan": "Current Plan"
+  },
+  "errors": {
+    "invalid_url": "Please enter a valid TikTok URL.",
+    "analysis_failed": "Failed to analyze video. Please try again.",
+    "login_required": "Please login to save your analysis."
+  }
+}

@@ -1,0 +1,74 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function hasOnlyAllowedFields(allowedFields) {
+      return request.resource.data.keys().hasOnly(allowedFields);
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+    function isValidUser(data) {
+      return hasOnlyAllowedFields(['email', 'displayName', 'photoURL', 'isPro', 'createdAt']) &&
+             data.email is string && isValidEmail(data.email) &&
+             (!('displayName' in data) || (data.displayName is string && data.displayName.size() <= 100)) &&
+             (!('photoURL' in data) || (data.photoURL is string && data.photoURL.size() <= 2000)) &&
+             data.isPro is bool &&
+             data.createdAt is string;
+    }
+
+    function isValidAnalysis(data) {
+      return hasOnlyAllowedFields(['videoUrl', 'result', 'createdAt']) &&
+             data.videoUrl is string && data.videoUrl.size() <= 2000 &&
+             data.result is map &&
+             data.result.keys().hasOnly(['hookScore', 'hookComment', 'visualContent', 'transcript', 'hashtagsAnalysis', 'sentiment', 'tips']) &&
+             data.result.hookScore is number &&
+             data.result.hookComment is string && data.result.hookComment.size() <= 5000 &&
+             data.result.visualContent is string && data.result.visualContent.size() <= 10000 &&
+             data.result.transcript is string && data.result.transcript.size() <= 20000 &&
+             data.result.hashtagsAnalysis is string && data.result.hashtagsAnalysis.size() <= 5000 &&
+             data.result.sentiment is string && data.result.sentiment.size() <= 1000 &&
+             data.result.tips is list && data.result.tips.size() <= 20 &&
+             data.createdAt != null; // Allow server timestamp
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+    
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      // Only allow users to create their own profile, and they cannot make themselves Pro
+      allow create: if isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.isPro == false;
+      // Users can update their profile, but cannot change isPro or createdAt
+      allow update: if isOwner(userId) && isValidUser(request.resource.data) && 
+                    request.resource.data.isPro == resource.data.isPro &&
+                    request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if false; // Users cannot delete their profile directly
+      
+      match /analyses/{analysisId} {
+        allow read: if isOwner(userId);
+        allow create: if isOwner(userId) && isValidAnalysis(request.resource.data);
+        allow update: if false; // Analyses are immutable
+        allow delete: if isOwner(userId);
+      }
+    }
+  }
+}

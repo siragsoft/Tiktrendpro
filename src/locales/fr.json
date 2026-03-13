@@ -1,0 +1,75 @@
+{
+  "app_name": "TokTrend Pro",
+  "nav": {
+    "home": "Accueil",
+    "dashboard": "Tableau de bord",
+    "pricing": "Tarifs",
+    "login": "Connexion avec Google",
+    "logout": "Déconnexion"
+  },
+  "home": {
+    "hero_title": "Découvrez le secret de la viralité sur TikTok",
+    "hero_subtitle": "Analysez n'importe quelle vidéo TikTok pour comprendre pourquoi elle a réussi ou échoué, et obtenez des conseils concrets pour améliorer votre contenu.",
+    "input_placeholder": "Collez l'URL de la vidéo TikTok ici...",
+    "analyze_btn": "Analyser la vidéo",
+    "recent_analyses": "Analyses récentes"
+  },
+  "analysis": {
+    "title": "Analyse de la vidéo",
+    "hook_score": "Score d'accroche (3 premières sec)",
+    "visual_content": "Contenu visuel",
+    "transcript": "Transcription",
+    "hashtags": "Analyse des hashtags",
+    "sentiment": "Analyse des sentiments",
+    "tips": "Conseils d'amélioration",
+    "save_btn": "Enregistrer l'analyse",
+    "share_btn": "Partager les résultats"
+  },
+  "dashboard": {
+    "title": "Votre tableau de bord",
+    "total_analyses": "Analyses totales",
+    "avg_hook_score": "Score d'accroche moyen",
+    "saved_analyses": "Analyses enregistrées",
+    "reanalyze": "Ré-analyser",
+    "delete": "Supprimer"
+  },
+  "pricing": {
+    "title": "Choisissez votre forfait",
+    "free": {
+      "name": "Gratuit",
+      "price": "0 $",
+      "features": [
+        "3 analyses par mois",
+        "Analyse d'accroche basique",
+        "Conseils standards"
+      ]
+    },
+    "premium": {
+      "name": "Premium",
+      "price": "9,99 $/mois",
+      "features": [
+        "Analyses illimitées",
+        "Insights IA avancés",
+        "Recommandations de hashtags",
+        "Support prioritaire"
+      ]
+    },
+    "pro": {
+      "name": "Pro",
+      "price": "29,99 $/mois",
+      "features": [
+        "Tout dans Premium",
+        "Suivi des concurrents",
+        "Prédiction des tendances",
+        "Accès API"
+      ]
+    },
+    "subscribe_btn": "S'abonner maintenant",
+    "current_plan": "Forfait actuel"
+  },
+  "errors": {
+    "invalid_url": "Veuillez entrer une URL TikTok valide.",
+    "analysis_failed": "Échec de l'analyse de la vidéo. Veuillez réessayer.",
+    "login_required": "Veuillez vous connecter pour enregistrer votre analyse."
+  }
+}

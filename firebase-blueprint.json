@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the application.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "isPro": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["email", "createdAt"]
+    },
+    "Analysis": {
+      "title": "Analysis",
+      "description": "A saved video analysis.",
+      "type": "object",
+      "properties": {
+        "videoUrl": { "type": "string" },
+        "result": {
+          "type": "object",
+          "properties": {
+            "hookScore": { "type": "number" },
+            "hookComment": { "type": "string" },
+            "visualContent": { "type": "string" },
+            "transcript": { "type": "string" },
+            "hashtagsAnalysis": { "type": "string" },
+            "sentiment": { "type": "string" },
+            "tips": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["videoUrl", "result", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles and subscription status."
+    },
+    "/users/{userId}/analyses/{analysisId}": {
+      "schema": { "$ref": "#/entities/Analysis" },
+      "description": "Stores saved analyses for a user."
+    }
+  }
+}
