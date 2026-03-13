@@ -71,8 +71,9 @@ export const Analysis: React.FC = () => {
         setLoading(true);
         const data = await analyzeVideoWithGemini(videoUrl, i18n.language);
         setResult(data);
-      } catch (err) {
-        setError(t("errors.analysis_failed"));
+      } catch (err: any) {
+        console.error("Analysis failed:", err);
+        setError(err.message || t("errors.analysis_failed"));
       } finally {
         setLoading(false);
       }
